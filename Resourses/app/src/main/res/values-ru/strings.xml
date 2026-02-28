@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resourses</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="login_button">Войти</string>
+    <string name="hello">Привет, моё имя %1$s, мне %2$d лет</string>
+
+    <plurals name="cats">
+        <item quantity="one">%d кот</item>
+        <item quantity="few">%d кота</item>
+        <item quantity="many">%d котиков</item>
+    </plurals>
+</resources>
