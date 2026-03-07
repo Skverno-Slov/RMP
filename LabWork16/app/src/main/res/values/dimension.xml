@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="searchHeight">40.dp</dimen>
+    <dimen name="manuHeight">40.dp</dimen>
+    <dimen name="manuWight">40.dp</dimen>
+    <dimen name="imageSize">100.dp</dimen>
+</resources>

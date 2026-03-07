@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LabWork16</string>
+    <string name="search">Search</string>
+    <string name="menu">Menu</string>
+    <string name="licence">© %1$s. All rights resaved. %2$d</string>
+    <plurals name="hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+    <plurals name="minute">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+    <string-array name="devs">
+        <item>Kim</item>
+        <item>Kim Andreevich</item>
+        <item>Kim Gorbunov</item>
+    </string-array>
+</resources>
