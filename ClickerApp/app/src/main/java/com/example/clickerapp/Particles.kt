@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -31,7 +34,7 @@ data class Particle(
     val speedY = sin(angle)*speed
 
     fun update(){
-        speed -= speed/100*5
+//        speed -= speed/100*5
         x+= speedX
         y+= speedY
         alpha -= 0.02f
@@ -41,24 +44,30 @@ data class Particle(
 
 @Composable
 fun ParticleAnimation(particles: MutableList<Particle>){
+    val invalidate by remember { mutableStateOf(false) }
     val textMeasurer = rememberTextMeasurer()
 
     LaunchedEffect(UInt) {
         while (true){
-            delay(16L)
+            delay(16)
             particles.removeAll{
                 it.update()
                 it.lifeTime <= 0
             }
+            invalidate != invalidate
         }
     }
 
     Canvas(Modifier.fillMaxSize()) {
-        for(part in particles){
-            val text= textMeasurer.measure(part.letter, cthulhuTextStyle)
-            drawText(text, color = Color(0.38f, 0.96f, 0.86f, part.alpha),
-                topLeft = Offset(part.x, part.y),
-                shadow = Shadow(Color.Black, Offset(5f, 5f), 10f))
+        invalidate.let {
+            for (part in particles) {
+                val text = textMeasurer.measure(part.letter, cthulhuTextStyle)
+                drawText(
+                    text, color = Color(0.38f, 0.96f, 0.86f, part.alpha),
+                    topLeft = Offset(part.x, part.y),
+                    shadow = Shadow(Color.Black, Offset(5f, 5f), 10f)
+                )
+            }
         }
     }
 }
