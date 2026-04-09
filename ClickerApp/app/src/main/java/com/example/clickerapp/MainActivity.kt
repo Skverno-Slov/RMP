@@ -1,6 +1,5 @@
 package com.example.clickerapp
 
-import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,8 +8,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.content.MediaType.Companion.Image
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Box
@@ -55,7 +52,6 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInParent
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -80,7 +76,7 @@ fun ClickerGame(vm: GameViewModel = viewModel()){
     val pageStaet = rememberPagerState() { 2 }
     val pages = remember { mutableStateMapOf(0 to PageData("Main", Icons.Default.Home),
         1 to PageData("Shop", Icons.Default.ShoppingCart)) }
-    val corutineScope = rememberCoroutineScope()
+    val coroutineScope = rememberCoroutineScope()
     ClickerAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
@@ -99,7 +95,7 @@ fun ClickerGame(vm: GameViewModel = viewModel()){
                     .background(MaterialTheme.colorScheme.primaryContainer),
                     verticalAlignment = Alignment.CenterVertically) {
                     pages.forEach { (n, page) ->
-                        Button(onClick = {corutineScope.launch {
+                        Button(onClick = {coroutineScope.launch {
                             pageStaet.animateScrollToPage(n, animationSpec = tween(300))
                         }}, Modifier.weight(1f).fillMaxHeight(),
                             shape = RectangleShape,
