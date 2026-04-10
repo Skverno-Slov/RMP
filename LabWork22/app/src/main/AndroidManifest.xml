@@ -18,6 +18,10 @@
             android:theme="@style/Theme.LabWork22">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> dd3e2d4e8a44c0646e66a34cd1bf6a4c5390f109
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

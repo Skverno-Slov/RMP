@@ -21,4 +21,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "LabWork22"
 include(":app")
+<<<<<<< HEAD
  
+=======
+>>>>>>> dd3e2d4e8a44c0646e66a34cd1bf6a4c5390f109
