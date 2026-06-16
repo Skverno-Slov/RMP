@@ -1,6 +1,5 @@
 package com.example.labwork22
 
-<<<<<<< HEAD
 import android.os.Bundle
 import android.os.Looper
 import android.view.ViewGroup
@@ -9,69 +8,6 @@ import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.progressindicator.CircularProgressIndicator
 
-class MainActivity : ComponentActivity() {
-    private lateinit var circularProgressIndicator: CircularProgressIndicator
-    private lateinit var downloadButton: Button
-    private val handler = android.os.Handler(Looper.getMainLooper())
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val container = android.widget.LinearLayout(this).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            orientation = android.widget.LinearLayout.VERTICAL
-            gravity = android.view.Gravity.CENTER
-        }
-        circularProgressIndicator = CircularProgressIndicator(this).apply {
-            id = android.view.View.generateViewId()
-            visibility = android.view.View.GONE
-            indicatorSize = 52
-            trackThickness = 8
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = android.view.Gravity.CENTER
-                bottomMargin = 32
-            }
-        }
-
-        downloadButton = Button(this).apply {
-            id = android.view.View.generateViewId()
-            text = "Download"
-            setTextColor(ContextCompat.getColor(this@MainActivity, android.R.color.white))
-            setBackgroundColor(
-                ContextCompat.getColor(
-                    this@MainActivity,
-                    android.R.color.holo_blue_dark
-                )
-            )
-            layoutParams = android.widget.LinearLayout.LayoutParams(
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT,
-                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = android.view.Gravity.CENTER
-            }
-        }
-        container.addView(circularProgressIndicator)
-        container.addView(downloadButton)
-
-        setContentView(container)
-
-        downloadButton.setOnClickListener {
-            circularProgressIndicator.visibility = android.view.View.VISIBLE
-        }
-
-        handler.postDelayed({
-            circularProgressIndicator.visibility = android.view.View.GONE
-        }, 10000)
-=======
-import android.graphics.drawable.Icon
-import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
@@ -113,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import com.example.labwork22.ui.theme.LabWork22Theme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.collections.getValue
 import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
@@ -194,9 +131,24 @@ fun LinearDownloadScreen() {
             "Загружено: ${(progress * 100).toInt()}%"
         )
 
-        CustomLinearProgress(progress, Color.Blue)
-        CustomLinearProgress(progress, Color.Red)
-        CustomLinearProgress(progress, Color.Green)
+        LinearProgressIndicator(
+            progress = { progress },
+            modifier = Modifier.fillMaxWidth().height(8.dp).padding(2.dp),
+            color = Color.Black,
+            trackColor = Color.White
+        )
+        LinearProgressIndicator(
+            progress = { progress },
+            modifier = Modifier.fillMaxWidth().height(8.dp).padding(2.dp),
+            color = Color.Red,
+            trackColor = Color.White
+        )
+        LinearProgressIndicator(
+            progress = { progress },
+            modifier = Modifier.fillMaxWidth().height(8.dp).padding(2.dp),
+            color = Color.Green,
+            trackColor = Color.White
+        )
 
         Button(
             onClick = { isDownloading = true },
@@ -225,7 +177,7 @@ fun CountdownTimerScreen() {
     LaunchedEffect(isRunning) {
         if (isRunning) {
             while (timeLeft > 0) {
-                delay(1000)
+                delay(100)
                 timeLeft--
             }
             isRunning = false
@@ -322,6 +274,5 @@ fun MessageBadgeScreen() {
                 Text("Обновить")
             }
         }
->>>>>>> dd3e2d4e8a44c0646e66a34cd1bf6a4c5390f109
     }
 }
